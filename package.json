@@ -6,9 +6,9 @@
   "license": "MIT",
   "scripts": {
     "build": "rollup -c",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "deploy-storybook": "storybook-to-ghpages"
+    "storybook:dev": "start-storybook -p 6006",
+    "storybook:build": "build-storybook",
+    "storybook:deploy": "storybook-to-ghpages"
   },
   "peerDependencies": {
     "react": "^16.13.1",
