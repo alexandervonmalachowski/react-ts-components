@@ -18,6 +18,7 @@ interface ISliderProps {
   gutter: number;
   showArrows: boolean;
   showDots: boolean;
+  className?: string;
   settings?: ISliderSetting[];
   onRenderDots?: (
     childCount: number,
@@ -387,11 +388,15 @@ const Slider: React.FC<ISliderProps> = (props) => {
   return (
     <>
       <div
-        className={classnames(styles.slider, {
-          [styles['show-arrows']]: props.showArrows,
-          [styles['show-minis']]: !props.showArrows && itemsToShow === 1,
-          [styles.active]: childWidth > 0,
-        })}
+        className={classnames(
+          styles.slider,
+          {
+            [styles['show-arrows']]: props.showArrows,
+            [styles['show-minis']]: !props.showArrows && itemsToShow === 1,
+            [styles.active]: childWidth > 0,
+          },
+          props.className ? props.className : ''
+        )}
         style={{
           height: `${height}px`,
         }}

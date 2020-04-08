@@ -6,6 +6,7 @@
   height: 50px;
   padding: 10px 20px;
   text-align: center;
+  transition: all 0.3s ease-in-out;
   &:focus {
     outline-style: none;
   }
@@ -13,7 +14,15 @@
     background-color: #0058a3;
     color: #ffffff;
   }
-  .secondary {
+  &.secondary {
+    background-color: #ffffff;
+    color: #0058a3;
+  }
+  &.secondary.hover {
+    background-color: #0058a3;
+    color: #ffffff;
+  }
+  &.primary.hover {
     background-color: #ffffff;
     color: #0058a3;
   }
