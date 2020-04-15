@@ -18,5 +18,10 @@
   },
   "esModuleInterop": true,
   "exclude": ["node_modules"],
-  "include": ["typings.d.ts", "**/**/*.ts", "**/**/*.tsx"]
+  "include": [
+    "typings.d.ts",
+    "**/**/*.ts",
+    "**/**/*.tsx",
+    "src/components/Button/button.stories.js"
+  ]
 }

@@ -1,0 +1,100 @@
+:local {
+  .vertical-slider {
+    box-sizing: border-box;
+    display: grid;
+    gap: 10px 10px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 100%;
+    opacity: 0;
+    overflow: hidden;
+    position: relative;
+    transition: opacity 0.3s ease-in;
+    width: 100%;
+    height: 100%;
+    div {
+      box-sizing: border-box;
+    }
+
+    > .inner {
+      display: block;
+      grid-row: 1;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      &.show-arrows {
+        grid-row: 2;
+      }
+      .bar {
+        display: flex;
+        height: 100%;
+        position: absolute;
+        flex-direction: column;
+        &.animate {
+          transition: 0.4s ease-in-out;
+        }
+      }
+      .item {
+        box-sizing: border-box;
+        position: relative;
+        flex-shrink: 0;
+        > * {
+          max-width: 100%;
+          height: 100%;
+          margin: 0 auto;
+          display: block;
+        }
+        &.selected {
+          border: 1px solid #111111;
+        }
+      }
+    }
+    & .control {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      display: block;
+      height: 50px;
+      width: 50px;
+      border-radius: 100%;
+      margin: 0;
+      outline-style: none;
+      padding-top: 16.5px;
+      position: absolute;
+      text-align: center;
+      transition: background-color 0.3s ease-in;
+      background-color: transparent;
+      z-index: 1;
+      &:hover {
+        background-color: #cccccc;
+      }
+
+      &:focus {
+        outline-style: none;
+      }
+
+      &.prev {
+        top: 0;
+        left: calc(50% - 25px);
+        grid-row: 1;
+        svg {
+          transform: rotate(90deg);
+        }
+      }
+      &.next {
+        grid-row: 3;
+        bottom: 0;
+        left: calc(50% - 25px);
+        svg {
+          transform: rotate(-90deg);
+        }
+      }
+    }
+
+    &.show-arrows {
+      grid-template-rows: 50px 1fr 50px;
+    }
+    &.active {
+      opacity: 1;
+    }
+  }
+}

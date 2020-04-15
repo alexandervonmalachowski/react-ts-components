@@ -3,6 +3,7 @@ import _ from 'lodash';
 import styles from './_slider.scss';
 import classnames from 'classnames';
 import Arrow from '../Icons/Arrow';
+import VerticalSlider from '../VerticalSlider';
 
 export interface ISliderSetting {
   breakPoint: number;
@@ -177,8 +178,13 @@ const Slider: React.FC<ISliderProps> = (props) => {
   };
 
   const handleMoveSlider = (moveX: number) => {
-    const { gutter, slideBy } = props;
-    const { translate, translateMax, childWidth } = stateRef.current;
+    const {
+      gutter,
+      slideBy,
+      translate,
+      translateMax,
+      childWidth,
+    } = stateRef.current;
     if (!stateRef.current.xDown) {
       return;
     }
@@ -268,9 +274,15 @@ const Slider: React.FC<ISliderProps> = (props) => {
   };
 
   const onClick = (evt: MouseEvent, direction: string) => {
-    const { gutter, slideBy } = state;
     evt.preventDefault();
-    const { translate, translateMax, childWidth, childIndex } = state;
+    const {
+      gutter,
+      slideBy,
+      translate,
+      translateMax,
+      childWidth,
+      childIndex,
+    } = state;
     const gutters = gutter * 2;
 
     if (direction === 'left') {
@@ -302,8 +314,7 @@ const Slider: React.FC<ISliderProps> = (props) => {
   };
 
   const onDotClick = (i: number) => {
-    const { gutter } = props;
-    const { childWidth } = state;
+    const { childWidth, gutter } = state;
     setState({
       ...state,
       translate: i === 0 ? 0 : -(i * childWidth + gutter * 2),
@@ -339,37 +350,23 @@ const Slider: React.FC<ISliderProps> = (props) => {
 
   const onMinisRender = (): JSX.Element => {
     const { childCount, childIndex } = state;
-    const { onRenderMinis, height } = props;
+    const { onRenderMinis, height, children } = props;
 
     if (onRenderMinis) {
       return onRenderMinis(childCount, childIndex, onDotClick);
     } else {
       return (
-        <div
-          className={styles.minis}
-          style={{
-            gridTemplateRows: `repeat(${React.Children.count(
-              props.children
-            )}, 100px)`,
-          }}
+        <VerticalSlider
+          itemsToShow={3}
+          height={height}
+          slideBy={1}
+          gutter={5}
+          showArrows={false}
+          onSlideClick={onDotClick}
+          selectedIndex={childIndex}
         >
-          {React.Children.map(
-            props.children,
-            (child: React.ReactChild, i: number) => {
-              return (
-                <div
-                  className={classnames(styles.minis, {
-                    [styles.active]: i === childIndex,
-                  })}
-                  key={`mini_${i}`}
-                  onClick={() => onDotClick(i)}
-                >
-                  {child}
-                </div>
-              );
-            }
-          )}
-        </div>
+          {children}
+        </VerticalSlider>
       );
     }
   };

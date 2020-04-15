@@ -1,6 +1,10 @@
 import React from 'react';
 import styles from './_storybook.scss';
-import Slider, { ISliderSetting } from '.';
+import Slider from '.';
+import { storiesOf, addDecorator } from '@storybook/react';
+import { withInfo } from '@storybook/addon-info';
+import { withKnobs } from '@storybook/addon-knobs';
+
 export default {
   title: 'Slider',
 };
@@ -48,9 +52,10 @@ const settings = [
     gutter: 5,
   },
 ];
-
-export const SliderWithArrows = () => {
-  return (
+storiesOf('Slider', module)
+  .addDecorator(withKnobs)
+  .addDecorator(withInfo)
+  .add('SliderWithArrows', () => (
     <Slider
       key={'first'}
       settings={settings}
@@ -69,11 +74,8 @@ export const SliderWithArrows = () => {
         );
       })}
     </Slider>
-  );
-};
-
-export const SliderWithMinis = () => {
-  return (
+  ))
+  .add('SliderWithMinis', () => (
     <div className={styles.small}>
       <Slider
         key={'second'}
@@ -93,5 +95,4 @@ export const SliderWithMinis = () => {
         })}
       </Slider>
     </div>
-  );
-};
+  ));

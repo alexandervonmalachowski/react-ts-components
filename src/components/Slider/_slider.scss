@@ -19,7 +19,7 @@
     div {
       box-sizing: border-box;
     }
-    .minis {
+    > .minis {
       display: none;
       @media (min-width: 1200px) {
         display: grid;
@@ -45,7 +45,7 @@
         }
       }
     }
-    .inner {
+    > .inner {
       display: block;
       grid-column: 1;
       overflow: hidden;
@@ -68,8 +68,11 @@
       .item {
         box-sizing: border-box;
         position: relative;
-        img {
-          max-width: 100%;
+        > * {
+          width: 100%;
+          height: 100%;
+          margin: 0 auto;
+          display: block;
         }
       }
     }
@@ -139,7 +142,7 @@
         margin: 5px;
         padding: 3px;
         width: 30px;
-
+        outline-style: none;
         &.active {
           border: 2px solid #ccc;
         }
@@ -149,22 +152,15 @@
         }
       }
     }
-    .dot {
-      background-clip: content-box;
-      background-color: #ccc;
-      border: none;
-      border-radius: 100%;
-      cursor: pointer;
-      height: 30px;
-      margin: 5px;
-      padding: 3px;
-      width: 30px;
-      &.active {
-        border: 2px solid #ccc;
-      }
-
-      :focus {
-        outline-style: none;
+    > .vertical-slider {
+      display: none;
+    }
+    > .vertical-slider {
+      grid-column: 1;
+    }
+    @media (min-width: 1200px) {
+      > .vertical-slider {
+        display: grid;
       }
     }
   }
