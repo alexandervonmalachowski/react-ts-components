@@ -5,7 +5,7 @@ Commands
 ```
 yarn run install
 yarn run build
-yarn run storybook
+yarn run storybook:dev
 
 ```
 
