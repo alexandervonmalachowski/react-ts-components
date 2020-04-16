@@ -4,7 +4,7 @@ import styles from './_slider.scss';
 import classnames from 'classnames';
 import Arrow from '../Icons/Arrow';
 import VerticalSlider from '../VerticalSlider';
-
+import useWindowSize from '../../hooks/useWindowSize';
 export interface ISliderSetting {
   breakPoint: number;
   itemsToShow: number;
@@ -51,7 +51,7 @@ const Slider: React.FC<ISliderProps> = (props) => {
     xDown: 0,
     moveX: 0,
   });
-
+  const { width } = useWindowSize();
   const stateRef = useRef(state);
 
   const setState = (data) => {
@@ -398,7 +398,10 @@ const Slider: React.FC<ISliderProps> = (props) => {
           height: `${height}px`,
         }}
       >
-        {itemsToShow === 1 && !props.showArrows && onMinisRender()}
+        {itemsToShow === 1 &&
+          !props.showArrows &&
+          width > 1200 &&
+          onMinisRender()}
         {props.showArrows && childIndex > 0 && (
           <div
             className={classnames(styles.control, styles.prev)}
