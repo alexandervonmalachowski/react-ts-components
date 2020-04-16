@@ -1,6 +1,6 @@
 {
   "name": "react-ts-components",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "license": "MIT",
@@ -9,7 +9,7 @@
     "storybook:dev": "start-storybook -p 6006",
     "storybook:build": "build-storybook",
     "storybook:deploy": "storybook-to-ghpages",
-    "bluekit": "bluekit --baseDir ./src/components --paths "
+    "publish": "npm publish --registry http://localhost:4873"
   },
   "peerDependencies": {
     "react": "^16.13.1",
@@ -80,5 +80,8 @@
       "./node_modules/@types",
       "./typings.d.ts"
     ]
+  },
+  "publishConfig": {
+    "registry": "http://localhost:4873"
   }
 }
